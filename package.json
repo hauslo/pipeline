@@ -1,6 +1,6 @@
 {
   "name": "@hauslo/pipeline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Heavily opinionated automated test, build and deploy pipelines. Makes prod-faring development a joy.",
   "engines": {
       "node": ">=12.18.4"
