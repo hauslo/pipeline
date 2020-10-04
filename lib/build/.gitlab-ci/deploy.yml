@@ -9,8 +9,8 @@ deploy:
       - "/usr/bin/env"
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   script:
+    - cd ${PATH_TO_BUILD}
     - terraform apply -auto-approve
-      -w ${PATH_TO_BUILD}
   artifacts:
     expire_in: never
     paths:

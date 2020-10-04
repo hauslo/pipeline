@@ -6,8 +6,8 @@ init_terraform:
       - "/usr/bin/env"
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   script:
+    - cd ${PATH_TO_BUILD}
     - terraform init
-      -w ${PATH_TO_BUILD}
       -backend-config="address=${TF_VAR_address}"
       -backend-config="lock_address=${TF_VAR_address}/lock"
       -backend-config="unlock_address=${TF_VAR_address}/lock"

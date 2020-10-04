@@ -6,5 +6,5 @@ validate_terraform:
       - "/usr/bin/env"
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   script:
+    - cd ${PATH_TO_BUILD}
     - terraform validate
-      -w ${PATH_TO_BUILD}
