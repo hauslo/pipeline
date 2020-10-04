@@ -1,0 +1,7 @@
+stages:
+  - test
+  - build
+  - test_build
+  - before_deploy
+  - test_before_deploy
+  - deploy

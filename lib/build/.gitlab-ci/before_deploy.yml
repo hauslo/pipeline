@@ -1,0 +1,21 @@
+init_terraform:
+  stage: before_deploy
+  image:
+    name: hashicorp/terraform:light
+    entrypoint:
+      - "/usr/bin/env"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  script:
+    - terraform init
+      -w ${PATH_TO_BUILD}
+      -backend-config="address=${TF_VAR_address}"
+      -backend-config="lock_address=${TF_VAR_address}/lock"
+      -backend-config="unlock_address=${TF_VAR_address}/lock"
+      -backend-config="username=${TF_VAR_ci_registry_user}"
+      -backend-config="password=${TF_VAR_ci_registry_password}"
+      -backend-config="lock_method=POST"
+      -backend-config="unlock_method=DELETE"
+  artifacts:
+    expire_in: never
+    paths:
+      - ${PATH_TO_BUILD}/.terraform/

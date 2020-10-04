@@ -1,0 +1,10 @@
+validate_terraform:
+  stage: test_before_deploy
+  image:
+    name: hashicorp/terraform:light
+    entrypoint:
+      - "/usr/bin/env"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  script:
+    - terraform validate
+      -w ${PATH_TO_BUILD}

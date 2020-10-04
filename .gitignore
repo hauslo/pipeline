@@ -1,1 +1,6 @@
-editor.code-workspace
+/editor.code-workspace
+/node_modules/
+/test/.test/
+/.nyc_output/
+/lib/build/deprecated/
+

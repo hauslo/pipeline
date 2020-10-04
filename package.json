@@ -1,22 +1,54 @@
 {
-  "name": "@hauslo/pipeline",
-  "version": "0.0.2",
-  "description": "Heavily opinionated automated test, build and deploy pipelines. Makes prod-faring development a joy.",
-  "engines": {
-      "node": ">=12.18.4"
-  },
-  "os": [ "linux" ],
-  "keywords": [
-      "gitlab",
-      "gitlab-ci",
-      "aws",
-      "terraform",
-      "docker"
-  ],
-  "contributors": [
-      {
-          "name": "Pierre Fntb"
-      }
-  ],
-  "license": "MIT"
+    "name": "@hauslo/pipeline",
+    "version": "0.0.2",
+    "description": "Heavily opinionated automated test, build and deploy pipelines. Makes prod-faring development a joy.",
+    "bin": "./cli.js",
+    "scripts": {
+        "test": "npx mocha test",
+        "coverage": "npx nyc npm test",
+        "prettier": "npx prettier --ignore-path .gitignore --check .",
+        "prettier-apply": "npx prettier --ignore-path .gitignore --write .",
+        "lint": "npx eslint .",
+        "lint-apply": "npx eslint --fix ."
+    },
+    "engines": {
+        "node": ">=12.18.4"
+    },
+    "os": [
+        "linux"
+    ],
+    "keywords": [
+        "gitlab",
+        "gitlab-ci",
+        "aws",
+        "terraform",
+        "docker"
+    ],
+    "contributors": [
+        {
+            "name": "Pierre Fntb"
+        }
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "ajv": "^6.12.5",
+        "err-code": "^2.0.3",
+        "fs-extra": "^9.0.1",
+        "js-yaml": "^3.14.0",
+        "semver": "^7.3.2",
+        "yargs": "^16.0.3"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "chai-as-promised": "^7.1.1",
+        "eslint": "^7.2.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-config-prettier": "^6.12.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-prettier": "^3.1.4",
+        "klaw": "^3.0.0",
+        "mocha": "^8.1.3",
+        "nyc": "^15.1.0",
+        "prettier": "^2.1.2"
+    }
 }

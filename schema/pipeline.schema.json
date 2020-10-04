@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Pipeline Configuration",
+    "type": "object",
+    "description": "Pipeline configuration object",
+    "required": ["version", "namespace"],
+    "properties": {
+        "version": {
+            "type": "string",
+            "description": "Pipeline configuration file version (semver)"
+        },
+        "namespace": {
+            "type": "string",
+            "description": "Project namespace"
+        },
+        "resources": {
+            "type": "object",
+            "description": "Resource definitions",
+            "additionalProperties": {
+                "type": "object",
+                "required": ["module", "src"],
+                "properties": {
+                    "module": {
+                        "type": "string",
+                        "description": "Resource pipeline module name"
+                    },
+                    "src": {
+                        "type": "string",
+                        "description": "Resource path (relative from repository root)"
+                    },
+                    "options": {
+                        "description": "Resource pipeline module options"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "additionalProperties": false
+}

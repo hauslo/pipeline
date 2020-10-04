@@ -1,0 +1,17 @@
+deploy:
+  stage: deploy
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: manual
+  image:
+    name: hashicorp/terraform:light
+    entrypoint:
+      - "/usr/bin/env"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  script:
+    - terraform apply -auto-approve
+      -w ${PATH_TO_BUILD}
+  artifacts:
+    expire_in: never
+    paths:
+      - ${PATH_TO_BUILD}/.terraform/

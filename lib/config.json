@@ -1,0 +1,5 @@
+{
+    "PIPELINE_FILENAME": ".pipeline.yml",
+    "GITLAB_CI_FILENAME": ".gitlab-ci.yml",
+    "BUILD_DIRNAME": ".pipeline"
+}
