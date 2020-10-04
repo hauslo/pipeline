@@ -7,15 +7,15 @@ const { assert } = chai;
 
 const { version: VERSION, name: NAME } = require("../package.json");
 
-const validateVersionCompatibility = require("../lib/validate/validateVersionCompatibility")({ VERSION });
+const validateVersionCompatibility = require("../lib/validate/validateVersionCompatibility");
 const validateSchema = require("../lib/validate/validateSchema");
 const loadModules = require("../lib/validate/loadModules")({ VERSION, NAME });
 
 describe("lib/validate", () => {
     describe("validateVersionCompatibility()", () => {
         it("should ensure configuration version compatibility", () => {
-            assert.doesNotThrow(() => validateVersionCompatibility(VERSION));
-            assert.throws(() => validateVersionCompatibility("0.0.0"));
+            assert.doesNotThrow(() => validateVersionCompatibility({ VERSION: "0.1.0" })("0.1.x"));
+            assert.throws(() => validateVersionCompatibility({ VERSION: "0.0.10" })("0.1.x"));
         });
     });
     describe("validateSchema()", () => {
