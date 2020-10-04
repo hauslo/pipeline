@@ -11,7 +11,7 @@ const fsp = require("fs").promises;
 
 const { BUILD_DIRNAME, GITLAB_CI_FILENAME } = require("../lib/config.json");
 
-const { makeId, makeDomain } = require("../lib/build/makeId");
+const { makeId, makeDomain, makeSlug } = require("../lib/build/makeId");
 const renderTf = require("../lib/build/renderTf")({ BUILD_DIRNAME });
 const renderGitlabCi = require("../lib/build/renderGitlabCi")({ BUILD_DIRNAME, GITLAB_CI_FILENAME });
 const createBuildDirectory = require("../lib/build/createBuildDirectory")({
@@ -66,6 +66,12 @@ describe("lib/build", () => {
         it("should return a sanitized id (az_)", () => {
             assert.match(makeId("test-project", "@org/pipeline-module-test", "demo"), /^[a-z_]+$/);
             assert.match(makeId("12QZer^$;!", "12QZer^$;!", "12QZer^$;!"), /^[a-z_]+$/);
+        });
+    });
+    describe("makeSlug()", () => {
+        it("should return a sanitized slug (az-)", () => {
+            assert.match(makeSlug("test-project", "@org/pipeline-module-test", "demo"), /^[a-z-]+$/);
+            assert.match(makeSlug("12QZer^$;!", "12QZer^$;!", "12QZer^$;!"), /^[a-z-]+$/);
         });
     });
     describe("makeDomain()", () => {
