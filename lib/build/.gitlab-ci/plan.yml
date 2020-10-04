@@ -1,0 +1,10 @@
+plan:
+  stage: plan
+  image:
+    name: hashicorp/terraform:light
+    entrypoint:
+      - "/usr/bin/env"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  script:
+    - cd ${PATH_TO_BUILD}
+    - terraform plan

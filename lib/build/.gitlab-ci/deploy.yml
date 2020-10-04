@@ -1,17 +1,5 @@
-plan:
-  stage: deploy
-  image:
-    name: hashicorp/terraform:light
-    entrypoint:
-      - "/usr/bin/env"
-      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-  script:
-    - cd ${PATH_TO_BUILD}
-    - terraform plan
-
 deploy:
   stage: deploy
-  needs: ["plan"]
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
       when: manual
