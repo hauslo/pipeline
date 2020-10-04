@@ -32,9 +32,7 @@ Makes prod-faring development a joy.
 
 Prerequisites
 
-- an AWS Account
-- a fresh git repository
-- a Gitlab account configured so that your AWS credentials are accessible from the repository CI/CD pipeline
+- a Gitlab repo configured so that the CI/CD pipeline has access to the remote terraform state (define the `TF_VAR_ci_registry_password` and `TF_VAR_ci_registry_user` environment variables in `Settings > CI/CD > Variables`) see <https://docs.gitlab.com/ee/user/infrastructure/#get-started-using-local-development>. Other secrets will most likely be required by various modules.
 
 Install the package at the root of a repo/monorepo
 
