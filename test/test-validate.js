@@ -36,9 +36,5 @@ describe("lib/validate", () => {
             assert.throws(() => loadModules(["module-that-doesnt-exist"]));
         });
     });
-    describe("validateModulesOptionSchemas()", () => {
-        it("should validate pipelines option schemas");
-    });
-
-    it("should ensure that the repository is initialized");
+    describe("validateModulesOptionSchemas()", () => {});
 });

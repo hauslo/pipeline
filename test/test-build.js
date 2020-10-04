@@ -9,6 +9,8 @@ const path = require("path");
 const fse = require("fs-extra");
 const fsp = require("fs").promises;
 
+const gitlabCiLint = require("gitlab-ci-lint");
+
 const { BUILD_DIRNAME, GITLAB_CI_FILENAME } = require("../lib/config.json");
 
 const { makeId, makeDomain, makeSlug } = require("../lib/build/makeId");
@@ -39,9 +41,11 @@ describe("lib/build", () => {
         it(`should have created a ${GITLAB_CI_FILENAME} file`, async () => {
             await assert.isFulfilled(fsp.stat(path.join(__dirname, ".test", BUILD_DIRNAME, GITLAB_CI_FILENAME)));
         });
-        it(
-            `the built ${GITLAB_CI_FILENAME} should validate against the Gitlab CI Linter https://docs.gitlab.com/ee/api/lint.html`
-        );
+        it(`the built ${GITLAB_CI_FILENAME} should validate against the Gitlab CI Linter https://docs.gitlab.com/ee/api/lint.html`, async () => {
+            await assert.isFulfilled(
+                gitlabCiLint.lintFile(path.join(__dirname, ".test", BUILD_DIRNAME, GITLAB_CI_FILENAME))
+            );
+        });
     });
 
     describe("renderTf()", () => {
