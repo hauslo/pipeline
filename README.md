@@ -123,6 +123,7 @@ paths: object<string>
 options: object<*>|undefined
 id: string
 domain: string
+slug: string
 ```
 
 Where
@@ -133,8 +134,9 @@ Where
 - `name` is the resource name, as defined in `.pipeline.yml`
 - `paths` helps modules to navigate the project repository. These paths are expected to be used to build the pipeline.
 - `options` is the module options object found in `.pipeline.yml`. It may contain values to configure the module's behavior. If the module exposes a `validate(options: *)` method then it is used to validate the user options
-- `id` is the resource unique identifier, it includes the project namespace, the pipeline module name, and the resource name. This `id`, and the next `domain`, should be used to name the built ci/cd pipeline and infrastructure (ex: `app__hauslo_website_static__demo`)
+- `id` is the resource unique identifier, it includes the project namespace, the pipeline module name, and the resource name. This `id`, and the next `domain` and `slug`, should be used to name the built ci/cd pipeline and infrastructure (ex: `app__hauslo_website_static__demo`)
 - `domain` is the same as `id` but is more suited to name some infrastructure resources (ex: `demo.hauslo-website-static.app`)
+- `slug` is the same as `id` but is more suited to name some infrastructure resources (ex: `demo-hauslo-website-static-app`)
 
 An example of `paths` :
 
@@ -175,7 +177,7 @@ Where
 
 ### Namespacing
 
-For sanity, infrastructure resources should be named after `id` or `domain`.
+For sanity, infrastructure resources should be named after `id`, `domain` or `slug`.
 
 ### Versionning
 
