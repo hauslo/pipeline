@@ -1,5 +1,7 @@
 # pipeline
 
+[![npm](https://img.shields.io/npm/v/@hauslo/pipeline?style=flat-square)](https://www.npmjs.com/package/@hauslo/pipeline)
+
 Heavily opinionated automated test, build and deploy pipelines.
 
 Makes prod-faring development a joy.
