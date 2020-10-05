@@ -29,6 +29,7 @@ Makes prod-faring development a joy.
     - [Namespacing](#namespacing)
     - [Versionning](#versionning)
     - [Terraform](#terraform)
+    - [Gitlab](#gitlab)
 
 ## How to use
 
@@ -191,8 +192,6 @@ Modules can place shared build artifacts in `build` (terraform configuration fil
 
 Modules terraform configurations can declare the variables `ci_registry`, `ci_registry_user` and `ci_registry_password`, these variables will be passed as environment variables from [.gitlab-ci.yml](lib/build/.gitlab-ci/variables.yml.js).
 
-Modules should document other secrets they require and users should define these secrets in Gitlab CI environment variables (ex: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`).
-
 ```hcl
 variable "ci_registry" {
   type        = string
@@ -204,3 +203,17 @@ variable "ci_registry_password" {
   type        = string
 }
 ```
+
+Modules should document other secrets they require and users should define these secrets in Gitlab CI environment variables (ex: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`).
+
+### Gitlab
+
+Modules can place `gitlab-ci.yml` configurations in `build/res`, these will be included from the generated root `gitlab-ci.yml` if the module returns `gitlabCiInclude`. The stages available to modules are
+
+- `test` to run a test suite on the `src` subrepo
+- `build` to build a container image or package out of `src`
+- `test_build` to test the previous image
+- `release` to publish the image to the Gitlab Container Registry (or anywhere else)
+- `before_deploy` to pull the release image from the Container/Package Registry and set up the subrepo so that terraform detects the change and redeploys the new release
+
+A module can also only implement a subset of these stages (or none)

@@ -2,6 +2,7 @@ stages:
   - test
   - build
   - test_build
+  - release
   - before_deploy
   - test_before_deploy
   - plan
